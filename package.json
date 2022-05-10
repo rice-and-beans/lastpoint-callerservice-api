@@ -1,0 +1,19 @@
+{
+  "name": "laspoint-callerservice-api",
+  "version": "1.0.0",
+  "description": "Contabilizador/Controlador de chamadas dos alunos da instituição de ensino",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rice-and-beans/laspoint-callerservice-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rice-and-beans/laspoint-callerservice-api/issues"
+  },
+  "homepage": "https://github.com/rice-and-beans/laspoint-callerservice-api#readme"
+}
