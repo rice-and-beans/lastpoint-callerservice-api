@@ -1,6 +1,8 @@
 const qrcodeService = require('../services/qrcodeService.js');
+const qrcodeConsts = require('../constants/qrcodeConts.js');
 
-exports.post = async (req, res) =>{
+exports.post = async (res) =>{
     const qrCode = await qrcodeService.criarQRCode();
-    return qrCode;
+    res.type(qrcodeConsts.TIPO_IMAGE);
+    qrCode.pipe(res);
 };
