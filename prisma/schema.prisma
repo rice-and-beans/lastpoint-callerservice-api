@@ -21,6 +21,6 @@ model Endereco {
   email     String   @unique
   name      String?
   createdAt DateTime @default(now())
-  userId Int
+  userId Int?
   usuario Usuario?
 }

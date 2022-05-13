@@ -1,3 +1,4 @@
+const qrcodeConsts = require('../constants/qrcodeConts.js');
 const qr = require('qr-image');
 
 module.exports = {
