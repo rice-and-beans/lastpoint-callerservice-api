@@ -5,14 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon App.js",
-    "migration": "db push"
+    "migration": "db push",
+    "start": "nodemon src/server.ts",
+    "start2": "tsnd --transpile-only --respawn ignore-watch node_modules src/server.ts"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/rice-and-beans/laspoint-callerservice-api.git"
-  },
-  "author": "",
+  "repository": "git+https://github.com/rice-and-beans/laspoint-callerservice-api.git",
+  "author": "Breno Augusto Comandolli <brenoaugustocomandolli@gmail.com>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/rice-and-beans/laspoint-callerservice-api/issues"
@@ -27,6 +25,11 @@
     "yarn": "^1.22.18"
   },
   "devDependencies": {
-    "prisma": "^3.14.0"
+    "@types/express": "^4.17.13",
+    "@types/node": "^17.0.33",
+    "prisma": "^3.14.0",
+    "ts-node": "^10.7.0",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.6.4"
   }
 }
