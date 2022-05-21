@@ -1,2 +1,2 @@
-# laspoint-callerservice-api
-Contabilizador/Controlador de chamadas dos alunos da instituição de ensino
+# lastpoint-records-api
+API de cadastros para chamada de aula

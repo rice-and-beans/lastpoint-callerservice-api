@@ -1,12 +1,16 @@
 import { Request, Response } from "express";
+import { BaseController } from "../../BaseController";
 import { CriarUsuarioUseCase } from "../../../domain/useCases/usuario/criarUsuario/criarUsuarioUseCase";
 
-export class CriarUsuarioController {
+export class CriarUsuarioController extends BaseController {
+
     constructor(
         private criarUsuarioUseCase: CriarUsuarioUseCase,
-    ){}
+    ){
+        super()
+    }
 
-    async handle(request: Request, response: Response): Promise<Response>{
+    async execute(request: Request, response: Response): Promise<Response>{
         const { codigo, nome, email, senha, tipo } = request.body;
         await this.criarUsuarioUseCase.execute({
             codigo,
@@ -17,4 +21,5 @@ export class CriarUsuarioController {
         });
         return response.status(201).send();
     }
+
 }
