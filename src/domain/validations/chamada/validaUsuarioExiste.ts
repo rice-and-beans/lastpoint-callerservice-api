@@ -1,6 +1,6 @@
 import { RegistroExistenteException } from "../../exceptions/registroExistenteException";
 import { IUsuarioRepository } from "../../repositories/usuarioRepository";
-import { ICriarUsuarioRequestDTO } from "../../model/criarUsuarioDTO";
+import { ICriarUsuarioRequestDTO } from "../../model/geraQrCodeDTO";
 import { ValidacaoBase } from "../ValidacaoBase";
 
 export class ValidaUsuarioExiste extends ValidacaoBase {
