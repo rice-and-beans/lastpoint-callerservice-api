@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { retornoPadraoConstants } from "../constants/retornoPadraoConstants";
 import { ExcpetionStatusType } from "../domain/exceptions/types/exceptionsStatusType";
+import { MensagensExceptionType } from "../domain/exceptions/types/mensagensExceptionType";
 
 export abstract class BaseController {
 
@@ -27,10 +28,24 @@ export abstract class BaseController {
     }
 
     private trataCorpoRetornoException(err, status): Object {
+        const msgRetorno = this.recuperaMensagemRetorno(err);
         return {
             status: status,
-            observacao: err.message ? err.message : retornoPadraoConstants.MSG_NAO_TRATADA
+            observacao: msgRetorno
         };
     }
     
+    private recuperaMensagemRetorno(err): String{
+        var mensagemInformada;
+        var mensagem = err.message ? err.message : retornoPadraoConstants.MSG_NAO_TRATADA;
+
+        if(err.constructor && err.constructor.name){
+            mensagemInformada = MensagensExceptionType[err.constructor.name];
+        }
+        if(mensagemInformada){
+            mensagem = mensagemInformada + mensagem;
+        }
+        return mensagem;
+    }
+
 }
