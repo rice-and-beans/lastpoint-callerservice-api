@@ -19,6 +19,7 @@
   "dependencies": {
     "@prisma/client": "^3.14.0",
     "@types/qr-image": "^3.2.5",
+    "axios": "^0.27.2",
     "cors": "^2.8.5",
     "express": "^4.18.1",
     "nodemon": "^2.0.16",

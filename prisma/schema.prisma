@@ -9,9 +9,21 @@ datasource db {
 
 model Usuario {
   id     String @id @default(auto()) @map("_id") @db.ObjectId
-  codigo String @unique
+  codigo String @unique 
   email  String @unique
   nome   String
   senha  String
   tipo   Int
+  aula Aula[]
+}
+
+model Aula {
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  codigo String @unique
+  datahorainicio  DateTime 
+  datahorafim   DateTime
+  nome  String
+  descricao   String
+  usuario Usuario   @relation(fields: [usuarioId], references: [id])
+  usuarioId String @db.ObjectId
 }

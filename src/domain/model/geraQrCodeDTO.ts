@@ -1,4 +1,4 @@
 export interface geraQrCodeRequestDTO {
-    aulaId: number;
-    professorId: number;
+    codAula: number;
+    codProfessor: number;
 }

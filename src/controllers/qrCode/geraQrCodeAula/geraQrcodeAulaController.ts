@@ -1,21 +1,21 @@
 import { Request, Response } from "express";
-import { qrcodeConstants } from "../../../../constants/qrcodeConstants";
-import { BaseController } from "../../../BaseController";
-import { GeraQrcodeAulaUseCase } from "../../../../domain/useCases/chamada/geraQrcodeAula/geraQrcodeAulaUseCase";
+import { qrcodeConstants } from "../../../constants/qrcodeConstants";
+import { BaseController } from "../../BaseController";
+import { GeraQrcodeAulaUseCase } from "../../../domain/useCases/geraQrcodeAula/geraQrcodeAulaUseCase";
 
 export class GeraQrcodeAulaController extends BaseController {
 
     constructor(
-        private geraQrcodeAulaUseCase: GeraQrcodeAulaUseCase,
+        private geraQrcodeAulaUseCase: GeraQrcodeAulaUseCase
     ){
         super()
     }
 
     async execute(request: Request, response: Response): Promise<Response> {
-        const {aulaId, professorId } = request.body;
+        const {codAula, codProfessor } = request.body;
         const qrCode = await this.geraQrcodeAulaUseCase.execute({
-            aulaId,
-            professorId
+            codAula,
+            codProfessor
         });
         response.type(qrcodeConstants.TIPO_IMAGE);
         qrCode.pipe(response);

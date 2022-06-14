@@ -1,9 +1,9 @@
 import express from 'express';
-import { chamada } from './routes/chamadaRoutes';
+import { qrcode } from './routes/qrcodeRoutes';
 
 const app = express();
 
 app.use(express.json());
-app.use('/chamada', chamada);
+app.use('/qrcode', qrcode);
 
 export { app }

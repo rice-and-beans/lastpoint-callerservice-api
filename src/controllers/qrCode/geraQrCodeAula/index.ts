@@ -1,5 +1,5 @@
 
-import { geraQrcodeAulaUseCase } from "../../../../domain/useCases/chamada/geraQrcodeAula";
+import { geraQrcodeAulaUseCase } from "../../../domain/useCases/geraQrcodeAula";
 import { GeraQrcodeAulaController } from "./geraQrcodeAulaController";
 
 const geraQrcodeAulaController = new GeraQrcodeAulaController(
