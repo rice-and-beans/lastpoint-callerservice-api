@@ -6,7 +6,7 @@ export class RecordsApi {
             codigo: codAula,
             token: chaveGerada
         }).catch((error) => {
-            console.error(error);
+            console.log("Serviço indisponível: RecordsApi");
         })
     }
 }

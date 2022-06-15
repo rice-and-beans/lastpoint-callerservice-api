@@ -19,14 +19,19 @@ export class GeraQrcodeAulaUseCase {
         await this.validacaoParamObrigatorio.valida(dadosValidacao);
 
         const retornoChave: any = await authApi.gerarChaveToken((Math.random()).toString());
-        var chaveGerada = retornoChave ? retornoChave.data : qrcodeConstants.CHAVE_PADRAO;
-        chaveGerada = chaveGerada ? chaveGerada : qrcodeConstants.CHAVE_PADRAO;
+        var chaveGerada = retornoChave && retornoChave.data ? retornoChave.data : qrcodeConstants.CHAVE_PADRAO;
+
+        const codAulaRetorno: any = await authApi.criptografar(data.codAula.toString());
+        var codAulaCript = codAulaRetorno && codAulaRetorno.data ? codAulaRetorno.data : data.codAula.toString();
+
+        const codProfRetorno: any = await authApi.criptografar(data.codProfessor.toString());
+        var codProfCript = codProfRetorno && codProfRetorno.data ? codProfRetorno.data : data.codProfessor.toString();
 
         const url = qrcodeConstants.URL_CHAMADA.
-                    concat((data.codAula).toString()).concat("&").
-                    concat((data.codProfessor).toString()).concat("&").
-                    concat((chaveGerada).toString());
-
+                    concat(qrcodeConstants.PARAM_AULA).concat(codAulaCript).concat("&").
+                    concat(qrcodeConstants.PARAM_PROF).concat(codProfCript).concat("&").
+                    concat(qrcodeConstants.PARAM_CHV).concat(chaveGerada.toString());
+        
         recordsApi.gravaTokenAula(data.codAula, chaveGerada);
 
         const code = qr.image(url, {type: qrcodeConstants.TIPO_IMAGE});
