@@ -10,4 +10,12 @@ export class AuthApi {
         })
     }
 
+    async validaToken(token: string): Promise<string> {
+        return axios.get('http://localhost:3002/auth/', {}, {
+            headers: {
+                "x-access-token": token
+            }
+        });
+    }
+
 }

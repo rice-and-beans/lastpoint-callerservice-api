@@ -7,3 +7,8 @@ export interface IRealizaChamadaQrCodeRequestDTO {
     codUsuario: string;
     chaveAula: string;
 }
+
+export interface IValidaAulaQrCodeRequestDTO {
+    codAula: string;
+    codUsuario: string;
+}
