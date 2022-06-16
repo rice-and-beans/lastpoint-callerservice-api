@@ -5,7 +5,7 @@ export class AlunoNaoPertenceAulaException extends Error {
         Object.setPrototypeOf(this, AlunoNaoPertenceAulaException.prototype);
     }
 
-    getMenssage() {
+    getMessage() {
         return this.message;
     }
 

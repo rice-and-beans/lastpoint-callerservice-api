@@ -5,7 +5,7 @@ export class PresencaJaRealizada extends Error {
         Object.setPrototypeOf(this, PresencaJaRealizada.prototype);
     }
 
-    getMenssage() {
+    getMessage() {
         return this.message;
     }
 

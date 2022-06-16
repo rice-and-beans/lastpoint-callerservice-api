@@ -5,7 +5,7 @@ export class AuthenticationTokenException extends Error {
         Object.setPrototypeOf(this, AuthenticationTokenException.prototype);
     }
 
-    getMenssage() {
+    getMessage() {
         return this.message;
     }
 

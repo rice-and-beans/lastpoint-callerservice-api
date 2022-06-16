@@ -5,7 +5,7 @@ export class RegistroExistenteException extends Error {
         Object.setPrototypeOf(this, RegistroExistenteException.prototype);
     }
 
-    getMenssage() {
+    getMessage() {
         return this.message;
     }
 

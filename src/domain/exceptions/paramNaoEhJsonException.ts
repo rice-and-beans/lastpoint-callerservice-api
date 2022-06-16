@@ -5,7 +5,7 @@ export class ParamNaoEhJsonException extends Error {
         Object.setPrototypeOf(this, ParamNaoEhJsonException.prototype);
     }
 
-    getMenssage() {
+    getMessage() {
         return this.message;
     }
 

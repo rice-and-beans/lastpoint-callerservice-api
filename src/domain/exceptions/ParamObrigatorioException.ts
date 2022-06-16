@@ -5,7 +5,7 @@ export class ParamObrigatorioException extends Error {
         Object.setPrototypeOf(this, ParamObrigatorioException.prototype);
     }
 
-    getMenssage() {
+    getMessage() {
         return this.message;
     }
 
