@@ -18,24 +18,35 @@ export class GeraQrcodeAulaUseCase {
         ]);
         await this.validacaoParamObrigatorio.valida(dadosValidacao);
 
-        const retornoChave: any = await authApi.gerarChaveToken((Math.random()).toString());
-        var chaveGerada = retornoChave && retornoChave.data ? retornoChave.data : qrcodeConstants.CHAVE_PADRAO;
-
-        const codAulaRetorno: any = await authApi.criptografar(data.codAula.toString());
-        var codAulaCript = codAulaRetorno && codAulaRetorno.data ? codAulaRetorno.data : data.codAula.toString();
-
-        const codProfRetorno: any = await authApi.criptografar(data.codProfessor.toString());
-        var codProfCript = codProfRetorno && codProfRetorno.data ? codProfRetorno.data : data.codProfessor.toString();
-
-        const url = qrcodeConstants.URL_CHAMADA.
-                    concat(qrcodeConstants.PARAM_AULA).concat(codAulaCript).concat("&").
-                    concat(qrcodeConstants.PARAM_PROF).concat(codProfCript).concat("&").
-                    concat(qrcodeConstants.PARAM_CHV).concat(chaveGerada.toString());
-        
+        const chaveGerada = await this.gerarTokenAula();
+        const conteudoQrCode = this.gerarJsonQrCode(data.codAula, data.codProfessor, chaveGerada);
         recordsApi.gravaTokenAula(data.codAula, chaveGerada);
 
-        const code = qr.image(url, {type: qrcodeConstants.TIPO_IMAGE});
+        const code = qr.image(conteudoQrCode, {type: qrcodeConstants.TIPO_IMAGE});
         return code;
+    }
+
+    async gerarTokenAula(): Promise<string> {
+        const retornoChave: any = await authApi.gerarChaveToken((Math.random()).toString());
+        var chaveGerada = retornoChave && retornoChave.data ? retornoChave.data : qrcodeConstants.CHAVE_PADRAO;
+        return chaveGerada;
+    }
+
+    gerarJsonQrCode(codAulaCript: string, codProfCript: string, chaveGerada: string): string{
+        const jsonString = this.montaJsonString(codAulaCript, codProfCript, chaveGerada);
+        const paramsCript = Buffer.from(jsonString).toString('base64');
+        return paramsCript;
+    }
+
+    montaJsonString(codAulaCript: string, codProfCript: string, chaveGerada: string){
+        const json = {
+            lastpointAula: {
+                aula: codAulaCript,
+                prof: codProfCript,
+                chave: chaveGerada
+            }
+        }
+        return JSON.stringify(json);
     }
 
 }

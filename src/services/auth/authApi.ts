@@ -10,12 +10,4 @@ export class AuthApi {
         })
     }
 
-    async criptografar(conteudo: string): Promise<string>{
-        return axios.post('http://localhost:3002/auth/cript', {
-            conteudo: conteudo
-        }).catch((error) => {
-            console.log("Serviço indisponível: AuthApi");
-        })
-    }
-
 }

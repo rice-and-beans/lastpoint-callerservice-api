@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { qrcodeConstants } from "../../../constants/qrcodeConstants";
-import { BaseController } from "../../BaseController";
+import { BaseController } from "../../baseController";
 import { GeraQrcodeAulaUseCase } from "../../../domain/useCases/geraQrcodeAula/geraQrcodeAulaUseCase";
 
 export class GeraQrcodeAulaController extends BaseController {
