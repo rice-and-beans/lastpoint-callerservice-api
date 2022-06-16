@@ -19,6 +19,13 @@ export class RecordsApi {
         })
     }
 
+    async validaPresencaJaFeita(codAula: string, codUsuario: string): Promise<boolean> {
+        return axios.get('http://localhost:3001/aula/presenca', {
+            codAula: codAula,
+            codUsuario: codUsuario
+        });
+    }
+
     async realizaChamada(codAula: string, codUsuario: string){
         axios.post('http://localhost:3001/chamada/', {
             codAula: codAula,
