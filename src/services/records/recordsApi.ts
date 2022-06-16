@@ -1,37 +1,39 @@
+import { ServicoIndisponivelException } from "../../domain/exceptions/servicoIndisponivelException";
+
 const axios = require('axios');
 
 export class RecordsApi {
     async gravaTokenAula(codAula: string, chaveGerada: string) {
-        axios.put('http://localhost:3001/aula/token', {
+        return await axios.put('http://localhost:3001/aula/token', {
             codigo: codAula,
             token: chaveGerada
         }).catch(() => {
-            console.log("Serviço indisponível: RecordsApi");
+            throw new ServicoIndisponivelException("Serviço indisponível: RecordsApi");
         })
     }
 
     async validaAulaAtual(codAula: string, codUsuario: string): Promise<boolean> {
-        return axios.get('http://localhost:3001/aula/now', {
+        return await axios.get('http://localhost:3001/aula/now', {
             codAula: codAula,
             codUsuario: codUsuario
         }).catch(() => {
-            console.log("Serviço indisponível: RecordsApi");
+            throw new ServicoIndisponivelException("Serviço indisponível: RecordsApi");
         })
     }
 
     async validaPresencaJaFeita(codAula: string, codUsuario: string): Promise<boolean> {
-        return axios.get('http://localhost:3001/aula/presenca', {
+        return await axios.get('http://localhost:3001/aula/presenca', {
             codAula: codAula,
             codUsuario: codUsuario
         });
     }
 
     async realizaChamada(codAula: string, codUsuario: string){
-        axios.post('http://localhost:3001/chamada/', {
+        return await axios.post('http://localhost:3001/chamada/', {
             codAula: codAula,
             codUsuario: codUsuario
         }).catch(() => {
-            console.log("Serviço indisponível: RecordsApi");
+            throw new ServicoIndisponivelException("Serviço indisponível: RecordsApi");
         })
     }
     
