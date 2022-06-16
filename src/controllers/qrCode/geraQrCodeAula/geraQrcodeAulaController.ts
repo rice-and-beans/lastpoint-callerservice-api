@@ -3,7 +3,7 @@ import { qrcodeConstants } from "../../../constants/qrcodeConstants";
 import { BaseController } from "../../baseController";
 import { GeraQrcodeAulaUseCase } from "../../../domain/useCases/geraQrcodeAula/geraQrcodeAulaUseCase";
 
-export class GeraQrcodeAulaController extends BaseController {
+export class GeraQrCodeAulaController extends BaseController {
 
     constructor(
         private geraQrcodeAulaUseCase: GeraQrcodeAulaUseCase

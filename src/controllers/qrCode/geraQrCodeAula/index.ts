@@ -1,8 +1,8 @@
 
 import { geraQrcodeAulaUseCase } from "../../../domain/useCases/geraQrcodeAula";
-import { GeraQrcodeAulaController } from "./geraQrcodeAulaController";
+import { GeraQrCodeAulaController } from "./geraQrCodeAulaController";
 
-const geraQrcodeAulaController = new GeraQrcodeAulaController(
+const geraQrcodeAulaController = new GeraQrCodeAulaController(
     geraQrcodeAulaUseCase
 );
 

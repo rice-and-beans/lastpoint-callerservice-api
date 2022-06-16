@@ -1,5 +1,5 @@
 import { qrcodeConstants } from "../../../constants/qrcodeConstants";
-import { geraQrCodeRequestDTO } from "../../model/geraQrCodeDTO";
+import { IGeraQrCodeRequestDTO } from "../../model/qrCodeDTO";
 import * as qr from "qr-image";
 import { ValidacaoBase } from "../../validations/validacaoBase";
 import { authApi } from "../../../services/auth";
@@ -11,7 +11,7 @@ export class GeraQrcodeAulaUseCase {
         private validacaoParamObrigatorio: ValidacaoBase,
     ){}
 
-    async execute(data: geraQrCodeRequestDTO){ 
+    async execute(data: IGeraQrCodeRequestDTO){ 
         const dadosValidacao = new Map<string, string>([
             [data.codAula, "codAula"],
             [data.codProfessor, "codProfessor"]

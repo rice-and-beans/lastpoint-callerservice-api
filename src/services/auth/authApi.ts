@@ -5,7 +5,7 @@ export class AuthApi {
     async gerarChaveToken(chave: string): Promise<string> {
         return axios.post('http://localhost:3002/auth/key', {
             chave: chave
-        }).catch((error) => {
+        }).catch(() => {
             console.log("Serviço indisponível: AuthApi");
         })
     }
