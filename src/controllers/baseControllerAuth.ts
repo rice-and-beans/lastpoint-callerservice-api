@@ -14,7 +14,7 @@ export abstract class BaseControllerAuth extends BaseController{
             throw new AutenticacaoInvalidaException("Não Autenticado");
         }
 
-        if(!retorno || (retorno.data)){
+        if(!retorno){
             throw new AutenticacaoInvalidaException("Não Autenticado");
         }
     }
