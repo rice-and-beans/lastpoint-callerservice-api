@@ -14,15 +14,14 @@ export class RecordsApi {
 
     async validaAulaAtual(codAula: string, codUsuario: string): Promise<boolean> {
         return await axios.get('http://localhost:3001/aula/now', {
-            codAula: codAula,
-            codUsuario: codUsuario
+            codAula: codAula
         }).catch(() => {
             throw new ServicoIndisponivelException("Serviço indisponível: RecordsApi");
         })
     }
 
     async validaPresencaJaFeita(codAula: string, codUsuario: string): Promise<boolean> {
-        return await axios.get('http://localhost:3001/aula/presenca', {
+        return await axios.get('http://localhost:3001/chamada/presenca', {
             codAula: codAula,
             codUsuario: codUsuario
         });
