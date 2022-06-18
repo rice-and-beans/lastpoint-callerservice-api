@@ -17,6 +17,7 @@ export abstract class BaseControllerAuth extends BaseController{
         if(!retorno){
             throw new AutenticacaoInvalidaException("Não Autenticado");
         }
+        await authApi.salvarTokenInvalido(token);
     }
     
 }
