@@ -4,7 +4,7 @@ import { BaseController } from "./baseController";
 
 export abstract class BaseControllerAuth extends BaseController{
 
-    protected async auth(request, response){
+    protected async auth(request){
         const token = request.headers['x-access-token'];
         var retorno: any;
 
@@ -17,7 +17,6 @@ export abstract class BaseControllerAuth extends BaseController{
         if(!retorno){
             throw new AutenticacaoInvalidaException("Não Autenticado");
         }
-        await authApi.salvarTokenInvalido(token);
     }
     
 }

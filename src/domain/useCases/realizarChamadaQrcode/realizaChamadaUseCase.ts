@@ -8,7 +8,7 @@ export class RealizaChamadaUseCase {
         private validaParamObrigatoriosParam: ValidacaoBase,
         private validaParamObrigatoriosChave: ValidacaoBase,
         private validaEhObjectJson: ValidacaoBase,
-        private validacoesToken: ValidacaoBase,
+        private validaTokenAula: ValidacaoBase,
         private validaAulaAtualUsuario: ValidacaoBase
     ){}
 
@@ -19,17 +19,20 @@ export class RealizaChamadaUseCase {
 
         await this.validaEhObjectJson.valida(jsonString);
         const dadosAula = JSON.parse(jsonString);
-
+        
         await this.validaCamposObrigatoriosAula(dadosAula);
-        await this.validacoesToken.valida(dadosAula.lastpointAula.chave);
+        await this.validaTokenAula.valida(dadosAula.lastpointAula.chave);
 
         var dadosValidacao = {
             codAula: dadosAula.lastpointAula.aula, 
-            codUsuario: data.codUsuario
+            codUsuario: data.codUsuario,
+            token: data.token
         } as IValidaAulaQrCodeRequestDTO
 
         await this.validaAulaAtualUsuario.valida(dadosValidacao);
-        await recordsApi.realizaChamada(dadosAula.lastpointAula.aula, data.codUsuario);
+        const retorno: any = await recordsApi.validaAulaAtual(dadosAula.lastpointAula.aula, data.codUsuario, data.token);
+        const codChamada = retorno ? retorno.data ? retorno.data.codigo : null : null
+        await recordsApi.realizaChamada(codChamada, data.token);
     }
 
     async validaCamposObrigatoriosParam(data: IRealizaChamadaQrCodeRequestDTO){

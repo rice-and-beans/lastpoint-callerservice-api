@@ -11,12 +11,14 @@ export class RealizaChamadaQrCodeController extends BaseController {
     }
 
     async execute(request: Request, response: Response): Promise<Response> {
+        const token = request.headers['x-access-token'] as string;
         const { codUsuario, chaveAula } = request.body;
         await this.realizaChamadaUseCase.execute({
             codUsuario,
-            chaveAula
+            chaveAula,
+            token
         });
-        return response.status(201).send();
+        return response.status(200).send();
     }
 
 }

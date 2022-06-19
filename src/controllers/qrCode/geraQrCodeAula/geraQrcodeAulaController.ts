@@ -12,10 +12,12 @@ export class GeraQrCodeAulaController extends BaseController {
     }
 
     async execute(request: Request, response: Response): Promise<Response> {
+        const token = request.headers['x-access-token'] as string;
         const {codAula, codProfessor } = request.body;
         const qrCode = await this.geraQrcodeAulaUseCase.execute({
             codAula,
-            codProfessor
+            codProfessor,
+            token
         });
         response.type(qrcodeConstants.TIPO_IMAGE);
         qrCode.pipe(response);

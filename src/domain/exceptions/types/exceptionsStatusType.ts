@@ -6,5 +6,6 @@ export enum ExcpetionStatusType {
     ParamObrigatorioAulaException = 400,
     ParamNaoEhJsonException = 400,
     AuthenticationTokenException = 400,
-    AlunoNaoPertenceAulaException = 400
+    AlunoNaoPertenceAulaException = 400,
+    ServicoIndisponivelException = 503
 }

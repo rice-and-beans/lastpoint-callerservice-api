@@ -18,16 +18,16 @@ export class GeraQrcodeAulaUseCase {
         ]);
         await this.validacaoParamObrigatorio.valida(dadosValidacao);
 
-        const chaveGerada = await this.gerarTokenAula();
+        const chaveGerada = await this.gerarTokenAula(data.token);
         const conteudoQrCode = this.gerarJsonQrCode(data.codAula, data.codProfessor, chaveGerada);
-        recordsApi.gravaTokenAula(data.codAula, chaveGerada);
+        await recordsApi.gravaTokenAula(data.codAula, chaveGerada, data.token);
 
         const code = qr.image(conteudoQrCode, {type: qrcodeConstants.TIPO_IMAGE});
         return code;
     }
 
-    async gerarTokenAula(): Promise<string> {
-        const retornoChave: any = await authApi.gerarChaveToken((Math.random()).toString());
+    async gerarTokenAula(token: string): Promise<string> {
+        const retornoChave: any = await authApi.gerarChaveToken((Math.random()).toString(), token);
         var chaveGerada = retornoChave && retornoChave.data ? retornoChave.data : qrcodeConstants.CHAVE_PADRAO;
         return chaveGerada;
     }

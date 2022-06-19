@@ -14,7 +14,7 @@ export class ValidaAulaAtualUsuario extends ValidacaoBase {
     public async verifica(dadosValidacao: Object){
         const dados = dadosValidacao as IValidaAulaQrCodeRequestDTO;
         try{
-            if(!await recordsApi.validaAulaAtual(dados.codAula, dados.codUsuario)){
+            if(!await recordsApi.validaAulaAtual(dados.codAula, dados.codUsuario, dados.token)){
                 throw new AlunoNaoPertenceAulaException('Aluno não pertence a aula informada ou aula já encerrada!');
             }
         }catch(err){

@@ -1,3 +1,4 @@
+import { Console } from "console";
 import { recordsApi } from "../../../services/records";
 import { PresencaJaRealizada } from "../../exceptions/presencaJaRealizada";
 import { IValidaAulaQrCodeRequestDTO } from "../../model/qrCodeDTO";
@@ -14,7 +15,8 @@ export class ValidaAulaPresenca extends ValidacaoBase {
     public async verifica(dadosValidacao: Object){
         const dados = dadosValidacao as IValidaAulaQrCodeRequestDTO;
         try {     
-            if(await recordsApi.validaPresencaJaFeita(dados.codAula, dados.codUsuario)){
+            const retorno: any = await recordsApi.validaPresencaJaFeita(dados.codAula, dados.codUsuario, dados.token);
+            if(retorno && retorno.data){
                 throw new PresencaJaRealizada('Presença já feita!');
             }
         } catch (error) {

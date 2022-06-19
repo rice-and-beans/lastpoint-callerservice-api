@@ -6,7 +6,7 @@ export abstract class BaseController {
 
     public async handle(request: Request, response: Response): Promise<Response>{
         try{
-            await this.auth(request, response);
+            await this.auth(request);
             return await this.execute(request, response);
         }catch(err){
             const status = this.trataStatusRetornoException(err);
@@ -34,6 +34,6 @@ export abstract class BaseController {
         };
     }
 
-    protected async auth(request, response){}
-    
+    protected async auth(request){}
+
 }
