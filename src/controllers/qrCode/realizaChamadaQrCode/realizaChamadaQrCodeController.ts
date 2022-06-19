@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import { RealizaChamadaUseCase } from "../../../domain/useCases/realizarChamadaQrcode/realizaChamadaUseCase";
-import { BaseController } from "../../baseController";
+import { BaseControllerAuth } from "../../baseControllerAuth";
 
-export class RealizaChamadaQrCodeController extends BaseController {
+export class RealizaChamadaQrCodeController extends BaseControllerAuth {
 
     constructor(
         private realizaChamadaUseCase: RealizaChamadaUseCase

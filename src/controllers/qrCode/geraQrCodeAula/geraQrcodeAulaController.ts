@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
 import { qrcodeConstants } from "../../../constants/qrcodeConstants";
-import { BaseController } from "../../baseController";
 import { GeraQrcodeAulaUseCase } from "../../../domain/useCases/geraQrcodeAula/geraQrcodeAulaUseCase";
+import { BaseControllerAuth } from "../../baseControllerAuth";
 
-export class GeraQrCodeAulaController extends BaseController {
+export class GeraQrCodeAulaController extends BaseControllerAuth {
 
     constructor(
         private geraQrcodeAulaUseCase: GeraQrcodeAulaUseCase
