@@ -14,15 +14,14 @@ export class RealizaChamadaUseCase {
 
     async execute(data: IRealizaChamadaQrCodeRequestDTO){ 
         await this.validaCamposObrigatoriosParam(data);
-
         const jsonString = Buffer.from(data.chaveAula, 'base64').toString();
-
+        
         await this.validaEhObjectJson.valida(jsonString);
         const dadosAula = JSON.parse(jsonString);
         
         await this.validaCamposObrigatoriosAula(dadosAula);
         await this.validaTokenAula.valida(dadosAula.lastpointAula.chave);
-
+        
         var dadosValidacao = {
             codAula: dadosAula.lastpointAula.aula, 
             codUsuario: data.codUsuario,

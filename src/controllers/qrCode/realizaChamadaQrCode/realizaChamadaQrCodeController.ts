@@ -11,6 +11,7 @@ export class RealizaChamadaQrCodeController extends BaseControllerAuth {
     }
 
     async execute(request: Request, response: Response): Promise<Response> {
+        console.log("aqui")
         const token = request.headers['x-access-token'] as string;
         const { codUsuario, chaveAula } = request.body;
         await this.realizaChamadaUseCase.execute({
