@@ -15,7 +15,7 @@ export class GeraQrCodeAulaController extends BaseControllerAuth {
         const token = request.headers['x-access-token'] as string;
         const codAula = request.query.codAula as string;
         const codProfessor = request.query.codProfessor as string;
-        console.log(codAula, codProfessor)
+
         const qrCode = await this.geraQrcodeAulaUseCase.execute({
             codAula,
             codProfessor,
